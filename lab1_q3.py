@@ -5,7 +5,7 @@ index=1
 # assigning 1/number to a variable n to get the input for the last index of while loop
 n=1/number
 #using while loop to find sum
-while index<n:
+while index<=n:
       sum=sum+1/index
       index+=1
 #displaying output

@@ -9,7 +9,7 @@ int main()
     //assigning 1/number to a float type variable n to get the input for the last index of while loop
     float n=1/number;
     //using while loop to find sum
-    while (index<n){
+    while (index<=n){
         sum=sum + 1/index;
         index++;
     }
