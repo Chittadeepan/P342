@@ -11,8 +11,8 @@ int main()
     //initialising fact and index 
     int fact=1;
     int index=1;
-    //checking boundary condition
-    if (n>=0){
+    //checking for positive integers
+    if (n>0){
         //calculating factorial in while loop
         while (index<=n){
             fact=fact*index;
@@ -22,8 +22,13 @@ int main()
         printf("The factorial of %d : %d",n,fact);
     }
     //checking boundary conditions 
+    //base case
+    else if(n==0){
+        printf("The factorial of %d: %d",n,fact);
+    }
+    // checking  boundary conditions 
     else{
-        printf("The given input is not a positive integer!");
+        printf("The given input is not a non-negative integer!");
     }
     printf("\n\n");
     return 0;
