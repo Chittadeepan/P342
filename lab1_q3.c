@@ -2,17 +2,11 @@
 
 int main()
 {
-    //initialising number, sum and index
-    float number=0.001;
+    //initialising sum and index
     float sum=0.0;
     float index=1;
-    //assigning 1/number to a float type variable n to get the input for the last index of while loop
-    float n=1/number;
-    //displaying the last index of while loop after asking for input from terminal
-    printf("Asking for input from terminal for performing the required sum: %f",n);
-    printf("\n\n");
     //using while loop to find sum
-    while (index<=n){
+    while (1/index>=0.001){
         sum=sum + 1/index;
         index++;
     }
