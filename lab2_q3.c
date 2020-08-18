@@ -177,8 +177,8 @@ int main(void) {
     //displaying M×A
     printf("M×A:\n");
     for (int i=0;i<3;i++){
-        for (int j=0;j<3;j++){
-            if (j==2){
+        for (int j=0;j<1;j++){
+            if (j==0){
                   printf("%f\n",MxA[i][j]);
             }
             else{
