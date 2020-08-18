@@ -13,20 +13,12 @@ print(data)
 y=data.split()
 print('\n')
 
-#reading matrix A from Matrix_A.txt
-with open("Matrix_A.txt") as fp:
-      data=fp.read()
-print('A:')      
-print(data)
-z=data.split()
-print('\n')
-
 #declaring  M as 2 dimensional list by list comprehension mechanism 
 M=[[eval(x[i]) for i in range(0,3)], [eval(x[i]) for i in range(3,6)], [eval(x[i]) for i in range(6,9)] ]
 #declaring N as 2 dimensional list by list comprehension mechanism 
 N=[[eval(y[i]) for i in range(0,3)], [eval(y[i]) for i in range(3,6)], [eval(y[i]) for i in range(6,9)] ]
 #declaring A as a 2 dimensional list
-A=[[1,0,3], [2,-1,5], [-4,3,-2] ]
+A=[[2],[-7],[6]]
 #calculating M×N
 #declaring MxN as empty list
 MxN=[]
@@ -97,7 +89,7 @@ for i in range(len(MxA)):
                   print(MxA[i][j],end='        ')
 '''
 #output: M×A:
--40   30   -34
-25    -13   48
--73   51   -49   
+98
+-55
+92  
 '''             
