@@ -25,8 +25,8 @@ print('\n')
 M=[[eval(x[i]) for i in range(0,3)], [eval(x[i]) for i in range(3,6)], [eval(x[i]) for i in range(6,9)] ]
 #declaring N as 2 dimensional list by list comprehension mechanism 
 N=[[eval(y[i]) for i in range(0,3)], [eval(y[i]) for i in range(3,6)], [eval(y[i]) for i in range(6,9)] ]
-#declaring A as a 2 dimensional list by list comprehension mechanism
-A=[[eval(z[i]) for i in range(0,3)], [eval(z[i]) for i in range(3,6)], [eval(z[i]) for i in range(6,9)] ]
+#declaring A as a 2 dimensional list
+A=[[1,0,3], [2,-1,5], [-4,3,-2] ]
 #calculating M×N
 #declaring MxN as empty list
 MxN=[]
