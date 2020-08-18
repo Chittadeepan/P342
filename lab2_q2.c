@@ -26,7 +26,7 @@ int main()
     printf("[");
     //printing output in for loop
     for(i=0;i<3;i++){
-        //check for last element 
+        //checking for last element 
         if (i==2){
             printf("%d] ",B[i]);
         }
@@ -42,7 +42,7 @@ int main()
     printf("[");
     //printing output in for loop
     for(i=0;i<3;i++){
-        //check for last element 
+        //checking for last element 
         if (i==2){
             printf("%d] ",A_add_B[i]);
         }
