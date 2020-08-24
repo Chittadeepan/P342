@@ -13,11 +13,13 @@ print(data)
 y=data.split()
 print('\n')
 
-#declaring  M as 2 dimensional list by list comprehension mechanism 
+#initialising  M as 2 dimensional list 
+#storing the elements of x in M by list comprehension mechanism 
 M=[[eval(x[i]) for i in range(0,3)], [eval(x[i]) for i in range(3,6)], [eval(x[i]) for i in range(6,9)] ]
-#declaring N as 2 dimensional list by list comprehension mechanism 
+#initialising N as 2 dimensional list 
+# storing the elements of y in N by list comprehension mechanism 
 N=[[eval(y[i]) for i in range(0,3)], [eval(y[i]) for i in range(3,6)], [eval(y[i]) for i in range(6,9)] ]
-#declaring A as a 2 dimensional list
+#initialising A as a 2 dimensional list
 A=[[2],[-7],[6]]
 #calculating M×N
 #declaring MxN as empty list
@@ -33,13 +35,13 @@ for k in range (0,len(M)):
       for i in range(0,len(N[l-1])):
             #initialising x
             x=0
-            #using another for loop to calculate each element in each row of M×A
+            #using another for loop to calculate each element in each row of M×N
             for j in range(0,l):
                   x=x+M[k][j]*N[j][i]
             #appending each element in list a     
             a.append(x)
      
-       #appending list a within another list M×A
+       #appending list a within another list M×N
       MxN.append(a)
       
 #displaying M×N by using two for loops
@@ -64,18 +66,18 @@ MxA=[]
 
 #using for loop for traversing the number of rows in M×A
 for k in range (0,len(M)):
-      #initialising  a as an empty list
+      #initialising  b as an empty list
       b=[]
       #using for loop for traversing the number of elements in each row of M×A
       for i in range(0,len(A[i])):
-            #initialising x
+            #initialising y
             y=0
             #using another for loop to calculate each element in each row of M×A
             for j in range(0,len(M[j])):
                   y=y+M[k][j]*A[j][i]
-            #appending each element in list a     
+            #appending each element in list b    
             b.append(y)
-       #appending list a within another list M×A
+       #appending list b within another list M×A
       MxA.append(b)
       
 #displaying M×A by using two for loops

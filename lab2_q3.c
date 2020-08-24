@@ -4,8 +4,8 @@ int main(void) {
     // creating FILE variables
     FILE *fptr;
     FILE *fpt;
-    // integer variable
-    int num;
+    // initialising int type array
+    int num[9]={4,-6,8,3,7,-2,-5,0,17};
   
     // opening the file in write mode
     fptr = fopen("Matrix_M", "w");
@@ -19,18 +19,18 @@ int main(void) {
         return -1;
     }
   
-    // user input for integer numbers
-    printf("Enter the elements of Matrix M present in 'Matrix_M.txt': ");
+    // writing the elements of matrix M in file
+   // printf("Enter the elements of Matrix M present in 'Matrix_M.txt': ");
     for (int i=0;i<9;i++) {
-        scanf("%d", &num);
-        putw(num, fptr);
+        //scanf("%d", &num[i]);
+        putw(num[i], fptr);
     }
   
     // closing connection
     fclose(fptr);
     
-    // integer variable
-    int n;
+    // initialising int type array
+    int n[9]={-5,2,-13,0,17,6,4,10,-2};
   
     // opening the file in write mode
     fpt = fopen("Matrix_N", "w");
@@ -44,11 +44,11 @@ int main(void) {
         return -1;
     }
   
-    // user input for integer numbers
-    printf("Enter the elements  of Matrix N present in 'Matrix_N.txt': ");
+    // writing the elements of matrix N in file
+    //printf("Enter the elements  of Matrix N present in 'Matrix_N.txt': ");
     for (int i=0;i<9;i++) {
-        scanf("%d", &n);
-        putw(n, fpt);
+        //scanf("%d", &n);
+        putw(n[i], fpt);
     }
   
     // close connection
@@ -64,8 +64,8 @@ int main(void) {
   
     // displaying matrix M
     printf("\nM:\n");
-    while ( (num = getw(fptr)) != EOF ) {
-        x[count]=num;
+    while ( (num[count] = getw(fptr)) != EOF ) {
+        x[count]=num[count];
         count++;
     }
     count=0;
@@ -97,8 +97,8 @@ int main(void) {
   
     // displaying matrix N
     printf("\nN:\n");
-    while ( (n = getw(fpt)) != EOF ) {
-        y[counter]=n;
+    while ( (n[counter] = getw(fpt)) != EOF ) {
+        y[counter]=n[counter];
         counter++;
     }
     counter=0;
@@ -155,7 +155,7 @@ int main(void) {
                   printf("%f\n",MxN[i][j]);
             }
             else{
-                  printf("%f    ",MxN[i][j]);
+                  printf("%f   ",MxN[i][j]);
             }
         }
     }
