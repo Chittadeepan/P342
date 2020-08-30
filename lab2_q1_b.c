@@ -34,6 +34,14 @@ int main()
     //displaying the total number of  cases for calculating distance between any two discrete point
     printf("Total number of cases for calculating distance between any two discrete point: %f\n\n",count);
     //displaying the average distance between any two discrete points
-    printf("The average distance between any two discrete points:%f\n\n ",average_distance);//output:3.8889
+    printf("The average distance between any two discrete points:%f\n\n ",average_distance);
     return 0;
 }
+/*
+//Output
+Total distance between any two discrete point:5040.000000
+
+Total number of cases for calculating distance between any two discrete point: 1296.000000
+
+The average distance between any two discrete points:3.888889
+*/

@@ -17,4 +17,14 @@ print('\n')
 print("Total number of cases for calculating distance between any two discrete point: ",count)
 print('\n')
 #displaying the average distance between any two discrete points
-print("The average distance between any two discrete points: ",average_distance) #output:1.94(approx.)
+print("The average distance between any two discrete points: ",average_distance)
+'''
+#Output
+Total distance between any two discrete point: 70
+
+
+Total number of cases for calculating distance between any two discrete point:  36
+
+
+The average distance between any two discrete points:  1.9444444444444444
+'''
