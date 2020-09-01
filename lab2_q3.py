@@ -12,10 +12,10 @@ print('N:')
 print(data)
 y=data.split()
 print('\n')
-#calling eval function for elements of a and storing them in a using for loop
+#calling eval function for elements of x and storing them in x using for loop
 for index in range(len(x)):
       x[index]=eval(x[index])
-#calling eval function for elements of b and storing them in b using for loop
+#calling eval function for elements of y and storing them in y using for loop
 for index in range(len(y)):
       y[index]=eval(y[index])
 #initialising  M as 2 dimensional list 

@@ -150,6 +150,7 @@ int main(void) {
             for (int j=0;j<col_M;j++){
             		x=x+M[k][j]*N[j][i];
             }
+            //storing x in kth row and ith column of MxN
             MxN[k][i]=x;
 				}
 		}
@@ -180,6 +181,7 @@ int main(void) {
             for (int j=0;j<col_M;j++){
             		x=x+M[k][j]*A[j][i];
             }
+            //storing x in kth row and ith column of MxA
             MxA[k][i]=x;
 				}
 		}
