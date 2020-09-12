@@ -44,7 +44,7 @@ def forward_backward_substitution(a,b):
             #calculating the numerator elements of x and storing it in matrix b in a loop
             for j in range(len(a)-1,i,-1): 
                 b[i][0]=b[i][0]-(a[i][j]*b[j][0])
-            #performing the final division of each element of b by u[j][j]
+            #performing the final division of each element of b by u[i][i]
             b[i][0]=b[i][0]/a[i][i]
     
     return b 

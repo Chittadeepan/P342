@@ -29,7 +29,7 @@ def partial_pivot(a,b):
                         #row r1-loop r+1, ..., n-1 
                         for r1 in range(r+1, n):
                                 #comparing with other elements of same column
-                                if abs( a[r1][r] ) > abs( a[r][r] ) and abs(a[r][r])==0:
+                                if abs( a[r1][r] ) > abs( a[r][r] ) and abs(a[r][r]) == 0:
                                         #interchange augmented a[r1][] <-> a[r][]
                                         a[r1],a[r]=a[r],a[r1]
 					#interchange b[r1] <-> b[r]
@@ -153,7 +153,7 @@ def forward_backward_substitution(a,b):
                 #calculating the numerator elements of x and storing it in matrix b in a loop
                 for k in range(len(a)-1,i,-1): 
                     b[i][j]=b[i][j]-(a[i][k]*b[k][j])
-                #performing the final division of each element of b by u[j][j]
+                #performing the final division of each element of b by u[i][i]
                 b[i][j]=b[i][j]/a[i][i]
     
     return b

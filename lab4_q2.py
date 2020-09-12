@@ -13,19 +13,17 @@ def LU_Decomposition(a,b):
             
             #condition for diagonal elements and upper triangular elements
             if i==j or i<j:
-                #using another for loop to calculate diagonal elements and upper triangular elements
+              #calculating the diagonal elements and upper triangular elements and storing them in matrix a in a loop
                 for k in range(0,i):
-                    #storing the elements obtained in a
                     a[i][j]=a[i][j]-(a[i][k]*a[k][j])
                 
             #condition for lower triangular elements  
             elif i>j:
                 
-                #using another for loop to calculate the lower triangular elements
+                 #calculating the lower triangular numerator elements and storing them in matrix a in a loop
                 for k in range(0,j):
-                    #storing the elements obtained in a
                     a[i][j]=a[i][j]-(a[i][k]*a[k][j])
-                #performing the final division of each element by u[j][j]
+                #performing the final division of each element of a by u[j][j]
                 a[i][j]=a[i][j]/a[j][j]
             
     return a,b
@@ -51,7 +49,7 @@ def forward_backward_substitution(a,b):
                 #calculating the numerator elements of x and storing it in matrix b in a loop
                 for k in range(len(a)-1,i,-1): 
                     b[i][j]=b[i][j]-(a[i][k]*b[k][j])
-                #performing the final division of each element by u[j][j]
+                #performing the final division of each element of b by u[i][i]
                 b[i][j]=b[i][j]/a[i][i]
     
     return b 
