@@ -12,13 +12,14 @@ def f(x,choice):
         return y2
 #main program
 def main():
-    
+    #initialising final absolute error(epsilon), initial lower bound (a), initial upper bound(b) and initial guess of root(x_0)
     epsilon=10**(-6)
     a=1.5
     b=2.5
     x_0=1.5
     
     #solving log(x)-sin(x)=0
+    
     #calling Bisection function and displaying the roots obtained
     print('Solving log(x)-sin(x)=0 by Bisection Method:\n')
     root=Bisection(a,b,epsilon,f,1)

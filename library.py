@@ -166,7 +166,7 @@ def forward_backward_substitution(a,b):
 def bracketing(a,b,f,choice):
     factor=1.5
     count=0
-    #using while loop to check bracketing of root
+    #using while loop to check bracketing of root and limit number of iterations of the loop
     while f(a,choice)*f(b,choice)>0 and count<12:
         #condition to update a
         if abs(f(a,choice))<abs(f(b,choice)):
@@ -182,7 +182,7 @@ def Bisection(a,b,epsilon,f,choice):
     #calling bracketing function
     a,b=bracketing(a,b,f,choice)
     print('No. of iterations    ','Absolute Error\n')
-    #using while loop for convergence of a and b
+    #using while loop for convergence of a and b and limit number of iterations of the loop
     while abs(b-a)>epsilon and count<200:
         print(count,'                   ',abs(b-a),'\n')
         c=(a+b)/2
@@ -211,7 +211,7 @@ def Regula_Falsi(a,b,epsilon,f,choice):
     a,b=bracketing(a,b,f,choice)
     
     print('No. of iterations    ','Absolute Error\n')
-    #using while loop for convergence of a and b
+    #using while loop for convergence of d and c and limit the number of iterations of the loop
     while abs(d-c)>epsilon and count<200:
         print(count,'                   ',abs(d-c),'\n')
         d=c
@@ -242,6 +242,7 @@ def Newton_Raphson(x_0,epsilon,f,choice):
     #initial guess
     x=0
     print('No. of iterations    ','Absolute Error\n')
+    #using while loop for convergence of x_0 and x and limit the number of iterations of the loop
     while abs(x_0-x)>epsilon and count<200:
          
         print(count,'                   ',abs(x_0-x),'\n') 
@@ -270,6 +271,7 @@ def Laguerre(alpha_0,epsilon,coeff,n,poly_f):
     count=0
     #initial guess
     alpha=0
+    #using while loop for convergence of alpha_0 and alpha and limit the number of iterations of the loop
     while abs(alpha_0-alpha)>epsilon and count<200:
         alpha=alpha_0
         G=d1_poly_f(alpha_0,coeff,n,poly_f)/poly_f(alpha_0,coeff,n)
