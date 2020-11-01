@@ -15,15 +15,14 @@ def main():
     #4th derivative of f is obtained by hand calculation as 12
     d4_f=12
     print('Maximum error allowed:',max_error)
+    
     #calculating N for Midpoint method
-   
-    N_Midpoint = ceil(sqrt((b-a)**3*d2_f/(24*max_error)))
+   N_Midpoint = ceil(sqrt((b-a)**3*d2_f/(24*max_error)))
     
     #calculating N for Trapezoidal method 
     N_Trapezoidal = ceil(sqrt((b-a)**3*d2_f/(12*max_error)))
 
     #calculating N for Simpson method
-    
     N_Simpson = ceil(pow((b-a)**5*d4_f/(180*max_error),1/4))
 
     #solving the integral of f(x) by Midpoint method,Trapezoidal method and Simpson method

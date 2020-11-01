@@ -13,6 +13,7 @@ def main():
     
     #solving the numerical integration result by the Midpoint method for N=6,10 and 24
     print('N     Numerical Integration Result')
+    
     print('6        ',Midpoint(a,b,f,6))#fixing N=6
     
     print('10       ',Midpoint(a,b,f,10))#fixing N=10
@@ -22,6 +23,7 @@ def main():
     print('Calculating the integral of given function by Trapezoidal method for various values of N:')
     #solving the numerical integration result by the Trapezoidal method for N=6,10 and 24
     print('N     Numerical Integration Result')
+    
     print('6       ',Trapezoidal(a,b,f,6))#fixing N=6
     
     print('10        ',Trapezoidal(a,b,f,10))#fixing N=10
@@ -30,6 +32,7 @@ def main():
     print('Calculating the integral of given function by Simpson method for various values of N:')
     #solving the numerical integration result by the Simpson method for N=6,10 and 24
     print('N     Numerical Integration Result')
+    
     print('6        ',Simpson(a,b,f,6))#fixing N=6 
     
     print('10        ',Simpson(a,b,f,10))#fixing N=10
