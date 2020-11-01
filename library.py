@@ -1,5 +1,7 @@
 #importing everything from math module 
 from math import *
+#importing everything from random module
+from random import *
 #matrix_read_and_write function
 def matrix_read_and_write(file_a,data):
     #writing matrices in files
@@ -236,6 +238,7 @@ def d1_f(x,f,choice):
     h=0.01
     y=(f(x+h,choice)-f(x-h,choice))/(2*h)
     return y
+
 #Newton_Raphson function
 def Newton_Raphson(x_0,epsilon,f,choice):
     count=0
@@ -301,3 +304,59 @@ def Synthetic_Division(alpha_0,coeff):
         coeff[k+1]=alpha_0*coeff[k]+coeff[k+1]
     
     return coeff
+#Midpoint function
+def Midpoint(a,b,f,N):
+    h = (b-a)/N
+    sum=0
+    #calculating sum in a for loop
+    for index in range(N):
+        sum=sum + h*(f(a+index*h)+f(a+(index+1)*h))/2
+    return sum
+
+#Trapezoidal function
+def Trapezoidal(a,b,f,N):
+    h = (b-a)/N
+    sum=0
+    #calculating sum in a for loop
+    for index in range(N+1):
+        #condition for first and last elements
+        if index==0 or index==N:
+            sum=sum+h*f(a+index*h)/2
+        else:
+            sum=sum+h*f(a+index*h)
+    return sum
+#Simpson function
+def Simpson(a,b,f,N):
+    h = (b-a)/N
+    sum = 0
+    #calculating sum in a for loop
+    for index in range(N+1):
+        #condition for first and last elements
+        if index == 0 or index == N:
+            sum=sum+h*f(a+index*h)/3
+        #condition for odd elements
+        elif index%2 == 1:
+            sum=sum+4 * h * f(a + index*h)/3
+        else:
+            sum=sum+2 * h * f(a + index * h) / 3
+    return sum
+#Monte_Carlo function
+def Monte_Carlo(a,b,f,N):
+    inside_counter=0
+    #calculating the number of random points (float type) inside the area under the curve f(x) in a loop
+    for i in range(N):
+        x = uniform(a, b)
+        #condition to determine range of y
+        if f(a)>f(b):
+            max_f=f(a)
+            y =uniform(0, f(a))
+        elif f(b)>f(a):
+            max_f=f(b)
+            y=uniform(0,f(b))
+        area=(max_f-0)*(b-a)
+        #condition to increase inside_counter by 1
+        if y<=f(x):
+            inside_counter+=1
+    #calculating the numerical integration result 
+    result=(inside_counter/N)*area
+    return result
