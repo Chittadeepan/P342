@@ -360,3 +360,98 @@ def Monte_Carlo(a,b,f,N):
     #calculating the numerical integration result 
     result=(inside_counter/N)*area
     return result
+#Euler function
+def Euler(x,y,n,h,f):
+    print("     X                                  Y")
+    #calculating for x less than range in a loop
+    while x<=n:
+        #displaying the solutions obtained
+        print(x,"                              ",y)
+        y = y + h*f(x,y)
+        x = x + h
+    return x,y
+#Runge Kutta-4(RK4) function
+def RK4(x,y,v,h,r,f_1,f_2):
+    print("     X                                  Y")
+    #calculating for x less than range in a loop
+    if x<r:
+        while x <= r:
+            k1 = h*f_1(v)
+            l1 = h*f_2(x,y,v)
+
+            k2 = h * f_1(v+l1/2)
+            l2 = h * f_2(x+h/2,y+k1/2, v+l1/2)
+
+            k3 = h * f_1(v + l2 / 2)
+            l3 = h * f_2(x + h / 2, y + k2 / 2, v + l2 / 2)
+
+            k4 = h * f_1(v + l3 / 2)
+            l4 = h * f_2(x + h / 2, y + k3 / 2, v + l3 / 2)
+            #calculating y and v i.e z for further iterations
+            y = y + 1/6*(k1+2*k2+2*k3+k4)
+            v = v + 1/6*(l1+2*l2+2*l3+l4)
+            x = x + h
+            
+            #displaying the solutions obtained
+            print(x,"                              ",y)
+            
+    #calculating for x greater than range in a loop
+    elif x>r:
+        while x >= r:
+            k1 = h*f_1(v)
+            l1 = h*f_2(x,y,v)
+
+            k2 = h * f_1(v+l1/2)
+            l2 = h * f_2(x+h/2,y+k1/2, v+l1/2)
+
+            k3 = h * f_1(v + l2 / 2)
+            l3 = h * f_2(x + h / 2, y + k2 / 2, v + l2 / 2)
+
+            k4 = h * f_1(v + l3 / 2)
+            l4 = h * f_2(x + h / 2, y + k3 / 2, v + l3 / 2)
+            #calculating y and v i.e z for further iterations
+            y = y + 1/6*(k1+2*k2+2*k3+k4)
+            v = v + 1/6*(l1+2*l2+2*l3+l4)
+            x = x + h
+            
+            #displaying the solutions obtained
+            print(x,"                              ",y)
+    return x,y
+#shooting method
+def shooting_method(x_0,y_0,h,x_n,y_n,z_1,z_2,f_1,f_2):
+    #calling RK4 function with initial values, estimated slopes and both the functions as parameters 
+    x_1,y_1=RK4(x_0,y_0,z_1,h,x_n,f_1,f_2)
+    x_2,y_2=RK4(x_0,y_0,z_2,h,x_n,f_1,f_2)
+    print("\nFrom the first guess z_1=",z_1, "the corresponding value of y is obtained as",y_1," at x=",x_n)
+    print("\nFrom the second guess z_2=",z_2, "the corresponding value of y is obtained as",y_2," at x=",x_n)
+    #condition for y_1 and y_n to be close enough
+    if abs(y_1-y_n)<0.000001:
+        return y_1,z_1
+    #condition for y_2 and y_n to be close enough
+    elif abs(y_2-y_n)<0.000001:
+        return y_2, z_2
+    else:
+    #calculating correct slope in a loop
+        for i in range(50):
+            #conditions to check y_1 and y_2 to be on opposite sides of y_n
+            if y_1<y_n and y_2>y_n:
+                u=z_1+(z_2-z_1)*(y_n-y_1)/(y_2-y_1)
+            elif y_1>y_n and y_2<y_n:
+                u=z_2+(z_1-z_2)*(y_n-y_2)/(y_1-y_2)
+                y_1,y_2=y_2,y_1
+            else:
+                print("\nGuess another slope at x_0.")
+                return y_2,z_2
+            #calling RK4 function with the same initial values, correct slope and both the functions as parameters
+            x_3,y_3=RK4(x_0,y_0,u,h,x_n,f_1,f_2)
+            #condition for y_3 and y_n to be close enough
+            if abs(y_3-y_n)<0.000001:
+                return y_3,u
+            else:
+                print("\nFrom the calculated guess",u,"the corresponding value of y is obtained as",y_3,"at x=",x_n)
+                if y_3<y_n:
+                    y_1=u
+                else:
+                    y_2=u
+        #condition for no solution
+        print("\nThe given differential equation couldn't be solved after 50 iterations.")
