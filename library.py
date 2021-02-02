@@ -2,6 +2,10 @@
 from math import *
 #importing everything from random module
 from random import *
+#importing pyplot from matplotlib module
+from matplotlib import pyplot
+#importing Axes3D from mplot3d module
+from mpl_toolkits.mplot3d import Axes3D
 #matrix_read_and_write function
 def matrix_read_and_write(file_a,data):
     #writing matrices in files
@@ -420,9 +424,11 @@ def RK4(x,y,v,h,r,f_1,f_2):
 #shooting method
 def shooting_method(x_0,y_0,h,x_n,y_n,z_1,z_2,f_1,f_2):
     #calling RK4 function with initial values, estimated slopes and both the functions as parameters 
+    print('\nFor z_1=1.5 as estimated slope, the values of x and y are obtained as:')
     x_1,y_1=RK4(x_0,y_0,z_1,h,x_n,f_1,f_2)
-    x_2,y_2=RK4(x_0,y_0,z_2,h,x_n,f_1,f_2)
     print("\nFrom the first guess z_1=",z_1, "the corresponding value of y is obtained as",y_1," at x=",x_n)
+    print('\nFor z_2=2.5 as estimated slope, the values of x and y are obtained as:')
+    x_2,y_2=RK4(x_0,y_0,z_2,h,x_n,f_1,f_2)
     print("\nFrom the second guess z_2=",z_2, "the corresponding value of y is obtained as",y_2," at x=",x_n)
     #condition for y_1 and y_n to be close enough
     if abs(y_1-y_n)<0.000001:
@@ -455,3 +461,203 @@ def shooting_method(x_0,y_0,h,x_n,y_n,z_1,z_2,f_1,f_2):
                     y_2=u
         #condition for no solution
         print("\nThe given differential equation couldn't be solved after 50 iterations.")
+
+#random_walk function
+def random_walk(x,y,step_range,walk_range,file_a):
+    
+    #storing the initial position of walker for using it in each random walk in loop
+    x_0=x
+    y_0=y
+    
+    #initialising variables to calculate RMS distance, radial distance and average displacement along x-axis and y-axis in loop
+    R_RMS=0
+    R=0
+    Sum=0
+    Mean_x=0
+    Mean_y=0
+    #creating a file to store the position of walker along x-axis and y-axis during random walk
+    with open(file_a,'w') as fptr:
+        #calculating distance covered along x-axis and y-axis in two loops for given walk_range and given step_range
+        for i in range(1,walk_range+1):
+            #storing the initial position of walker so that walker can start from that position after completion of each random walk
+            x=x_0
+            y=y_0
+            #creating empty list to store the position of walker along x-axis and y-axis during random walk
+            X=[]
+            Y=[]
+            for j in range(1,step_range+1):
+                theta= uniform(0,2 * pi)
+                x=x+cos(theta)
+                y=y+sin(theta)
+                
+                #conditions for choosing 5 random walks
+                if i/20==1:
+                    if j==1:
+                        fptr.write("Set:1\n")
+                        fptr.write("\nDistance along x-axis               Distance along y-axis\n\n")
+                        
+                    X.append(x)
+                    Y.append(y)
+                    fptr.writelines([str(x),'                      ',str(y),'\n'])
+                    
+                    if j==step_range:
+                        #plotting Set:1
+                        pyplot.plot(X,Y,color="blue",linestyle="--",marker=".")
+                        fptr.write('\n\n')
+                        print("After",step_range,"number of steps starting from (",x_0,",",y_0,") and",i,"random walks, the final position of random walker:(",x,",",y,") and the radial distance R=",R," .")
+                     
+                elif i/20==2:
+                    if j==1:
+                        fptr.write("Set:2\n")
+                        fptr.write("\nDistance along x-axis               Distance along y-axis\n\n") 
+                
+                    X.append(x)
+                    Y.append(y)
+                    fptr.writelines([str(x),'                      ',str(y),'\n'])
+                    
+                    if j==step_range:
+                        #plotting Set:2
+                        pyplot.plot(X,Y,color="green",linestyle="--",marker=".")
+                        fptr.write('\n\n')
+                        print("After",step_range,"number of steps starting from (",x_0,",",y_0,") and",i,"random walks, the final position of random walker:(",x,",",y,") and the radial distance R=",R," .")
+                     
+                elif i/20==3:
+                    if j==1:
+                        fptr.write("Set:3\n")
+                        fptr.write("\nDistance along x-axis               Distance along y-axis\n\n")
+
+                    X.append(x)
+                    Y.append(y) 
+                    fptr.writelines([str(x),'                      ',str(y),'\n'])
+                    
+                    if j==step_range:
+                        #plotting Set:3
+                        pyplot.plot(X,Y,color="yellow",linestyle="--",marker=".")
+                        fptr.write('\n\n')
+                        print("After",step_range,"number of steps starting from (",x_0,",",y_0,") and",i,"random walks, the final position of random walker:(",x,",",y,") and the radial distance R=",R," .")
+                    
+                elif i/20==4:
+                    if j==1:
+                        fptr.write("Set:4\n")
+                        fptr.write("\nDistance along x-axis               Distance along y-axis\n\n")
+                
+                    X.append(x)
+                    Y.append(y)
+                    
+                    fptr.writelines([str(x),'                      ',str(y),'\n'])
+                    
+                    if j==step_range:
+                        #plotting Set:4
+                        pyplot.plot(X,Y,color="orange",linestyle="--",marker=".")
+                        fptr.write('\n\n')
+                        print("After",step_range,"number of steps starting from (",x_0,",",y_0,") and",i,"random walks, the final position of random walker:(",x,",",y,") and the radial distance R=",R," .") 
+                    
+                elif i/20==5:
+                    if j==1:
+                        fptr.write("Set:5\n")
+                        fptr.write("\nDistance along x-axis               Distance along y-axis\n\n")
+                
+                    X.append(x)
+                    Y.append(y)
+                    fptr.writelines([str(x),'                      ',str(y),'\n'])
+                    
+                    if j==step_range:
+                        #plotting Set:5
+                        pyplot.plot(X,Y,color="red",linestyle="--",marker=".",)
+                        fptr.write('\n\n')
+                        print("After",step_range,"number of steps starting from (",x_0,",",y_0,") and",i,"random walks, the final position of random walker:(",x,",",y,") and the radial distance R=",R," .")
+                    
+            R=sqrt(pow(x,2)+pow(y,2))
+            Sum=Sum+pow(R,2)
+        Mean_x=x/walk_range
+        Mean_y=y/walk_range
+        R_RMS=sqrt(Sum/walk_range)
+        print("\nAfter ", walk_range," number of random walks, RMS distance=",R_RMS,", average displacement along x-axis=",Mean_x,", average displacement along y-axis=",Mean_y,".")
+              
+        
+    #displaying the plots of various random walks with given number of steps
+    if j==250:  
+                pyplot.title("Random Walk Plot for 250 steps")
+                pyplot.xlabel("Distance along X axis")
+                pyplot.ylabel("Distance along Y axis")
+                pyplot.show()
+                
+    elif j==500:
+                pyplot.title("Random Walk Plot for 500 steps")
+                pyplot.xlabel("Distance along X axis")
+                pyplot.ylabel("Distance along Y axis")
+                pyplot.show()
+            
+    elif j==750:
+                pyplot.title("Random Walk Plot for 750 steps")
+                pyplot.xlabel("Distance along X axis")
+                pyplot.ylabel("Distance along Y axis")
+                pyplot.show()
+               
+    elif j==1000: 
+                pyplot.title("Random Walk Plot for 1000 steps")
+                pyplot.xlabel("Distance along X axis")
+                pyplot.ylabel("Distance along Y axis")
+                pyplot.show()
+                
+    elif j==1250: 
+                pyplot.title("Random Walk Plot for 1250 steps")
+                pyplot.xlabel("Distance along X axis")
+                pyplot.ylabel("Distance along Y axis")
+                pyplot.show()
+         
+         
+    print('\n\n')
+    
+#Monte_Carlo Simulation for volume
+def monte_carlo_volume(g,h,i,p,q,r,f,N):
+    #initialising variables to count the number of points that satisfy the f(x) equation
+    inside_counter=0
+    #creating empty list to store the coordinates along x-axis, y-axis and z-axis of points inside the f(x) equation
+    X=[]
+    Y=[]
+    Z=[]
+    if (N==12100):
+        with open("Data for 3D Plot of volume of ellipsoid for 12100 points.txt",'a') as fptr:
+            fptr.writelines(["N: ",str(N)])
+            fptr.write("\n X Co-ordinate                              Y Co-ordinate                            Z Co-ordinate\n\n") 
+    #calculating the number of random points (float type) inside the space under the curve f(x) in a loop
+    for j in range(N):
+            x = uniform(g,p)
+            y= uniform(h,q)
+            z= uniform(i,r)
+
+            #condition for counting random points
+            if f(x,y,z)<=1:
+                inside_counter+=1
+                if (N==12100):
+                    with open("Data for 3D Plot of volume of ellipsoid for 12100 points.txt",'a') as fptr: 
+                        fptr.writelines([str(x),'                      ',str(y),'                      ',str(z),'\n']) 
+                    X.append(x)
+                    Y.append(y)
+                    Z.append(z)
+                    
+                
+                
+            
+    #condition for plotting a 3D plot of f(x) equation  
+    if (N==12100):
+                #plotting a scatter plot of data points inside the f(x) equation
+                fig=pyplot.figure()
+                ax=fig.gca(projection='3d')
+                ax.scatter(X,Y,Z,zdir='z')
+                pyplot.title("3D Plot of Volume of Ellipsoid for 12,100 points")
+                ax.set_xlabel("X-Coordinate")
+                ax.set_ylabel("Y-Coordinate")
+                ax.set_zlabel("Z-Coordinate")
+                pyplot.show()
+                
+    #defining volume of entire space of points
+    V=abs(p-g)*abs(q-h)*abs(r-i)
+    
+    #calculating the numerical integration result of f(x) equation
+    result=(inside_counter/N)*V
+    return result
+
+
+
