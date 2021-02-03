@@ -569,10 +569,10 @@ def random_walk(x,y,step_range,walk_range,file_a):
                     
             R=sqrt(pow(x,2)+pow(y,2))
             Sum=Sum+pow(R,2)
-        Mean_x=x/walk_range
-        Mean_y=y/walk_range
-        R_RMS=sqrt(Sum/walk_range)
-        print("\nAfter ", walk_range," number of random walks, RMS distance=",R_RMS,", average displacement along x-axis=",Mean_x,", average displacement along y-axis=",Mean_y,".")
+    Mean_x=x/walk_range
+    Mean_y=y/walk_range
+    R_RMS=sqrt(Sum/walk_range)
+    print("\nAfter ", walk_range," number of random walks, RMS distance=",R_RMS,", average displacement along x-axis=",Mean_x,", average displacement along y-axis=",Mean_y,".")
               
         
     #displaying the plots of various random walks with given number of steps
@@ -580,30 +580,35 @@ def random_walk(x,y,step_range,walk_range,file_a):
                 pyplot.title("Random Walk Plot for 250 steps")
                 pyplot.xlabel("Distance along X axis")
                 pyplot.ylabel("Distance along Y axis")
+                pyplot.legend(["Random_Walk_1","Random_Walk_2","Random_Walk_3","Random_Walk_4","Random_Walk_5"])
                 pyplot.show()
                 
     elif j==500:
                 pyplot.title("Random Walk Plot for 500 steps")
                 pyplot.xlabel("Distance along X axis")
                 pyplot.ylabel("Distance along Y axis")
+                pyplot.legend(["Random_Walk_1","Random_Walk_2","Random_Walk_3","Random_Walk_4","Random_Walk_5"])
                 pyplot.show()
             
     elif j==750:
                 pyplot.title("Random Walk Plot for 750 steps")
                 pyplot.xlabel("Distance along X axis")
                 pyplot.ylabel("Distance along Y axis")
+                pyplot.legend(["Random_Walk_1","Random_Walk_2","Random_Walk_3","Random_Walk_4","Random_Walk_5"])
                 pyplot.show()
                
     elif j==1000: 
                 pyplot.title("Random Walk Plot for 1000 steps")
                 pyplot.xlabel("Distance along X axis")
                 pyplot.ylabel("Distance along Y axis")
+                pyplot.legend(["Random_Walk_1","Random_Walk_2","Random_Walk_3","Random_Walk_4","Random_Walk_5"])
                 pyplot.show()
                 
     elif j==1250: 
                 pyplot.title("Random Walk Plot for 1250 steps")
                 pyplot.xlabel("Distance along X axis")
                 pyplot.ylabel("Distance along Y axis")
+                pyplot.legend(["Random_Walk_1","Random_Walk_2","Random_Walk_3","Random_Walk_4","Random_Walk_5"])
                 pyplot.show()
          
          
@@ -650,6 +655,7 @@ def monte_carlo_volume(g,h,i,p,q,r,f,N):
                 ax.set_xlabel("X-Coordinate")
                 ax.set_ylabel("Y-Coordinate")
                 ax.set_zlabel("Z-Coordinate")
+                pyplot.legend(["Co-ordinate point inside the ellipsoid or on the surface of ellipsoid"])
                 pyplot.show()
                 
     #defining volume of entire space of points
@@ -658,6 +664,3 @@ def monte_carlo_volume(g,h,i,p,q,r,f,N):
     #calculating the numerical integration result of f(x) equation
     result=(inside_counter/N)*V
     return result
-
-
-
