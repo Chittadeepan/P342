@@ -2,8 +2,6 @@
 from library import *
 #importing everything from math module
 from math import *
-#importing pyplot from matplotlib module
-from matplotlib import pyplot
 
 #function with specifications of ellipsoid
 def f(x,y,z):
