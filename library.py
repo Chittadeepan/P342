@@ -797,4 +797,4 @@ def standard_deviation_3(number,A):
     Grand_Sum=Sum_N+ (Product_N/Sum_N)*(mean_x-mean_y)**2
     Grand_Sigma=Grand_Sum/(Sum_N-1)
     return Grand_Sigma
-    #S_N=2/3(M_N)+1/3(T_N) S_n-Simpson M_N-midpoint T_N-trapezoidal
+    
