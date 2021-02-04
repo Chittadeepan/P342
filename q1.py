@@ -19,14 +19,17 @@ def main():
     
     #calling Newton_Raphson function to find root
     root=Newton_Raphson(x_0,epsilon,f,1)
-    #determining Wien's displacement constant (b)
-    b=(h*c)/(k*root)
-     
+    
+    #condition to calculate Wien's displacement constant (b)
     if root>0:
-        print("Root:",root)
-        print("Wien's displacement constant (b):",b,"mK")
+        #determining Wien's displacement constant (b)
+        b=(h*c)/(k*root)
     else:
         print("Find another root")
+    
+    print("Root:",root)
+    print("Wien's displacement constant (b):",b,"mK")
+    
 main()
 '''
 #output

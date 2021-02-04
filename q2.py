@@ -23,10 +23,10 @@ def main():
     #calling simpson method to find the integration result
     result=Simpson(a,b,f,N)
     print("Number of steps       Result")
-    print("     ",N,"           ",result)
+    print("     ",N,"           ",result,"s")
 main()
 '''
 #output
 Number of steps       Result
-      10             2.0873200174795916
+      10             2.0873200174795916 s
 '''

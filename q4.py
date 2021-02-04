@@ -25,8 +25,8 @@ def main():
     z_2=40
     #calling shooting method to solve given boundary value problem
     
-    shooting_method(t_0,y_0,h,t_n,y_n,z_1,z_2,f_1,f_2)
-    print("\nThe launch velocity is determined from the initial and final slope to be around 33 m/s.")
+    y,z=shooting_method(t_0,y_0,h,t_n,y_n,z_1,z_2,f_1,f_2)
+    print("\nThe launch velocity is determined from the two guessed slopes to be",z,"m/s.")
 main()
 '''
 #output
@@ -34,5 +34,5 @@ From the first guess z_1= 20 the corresponding value of y is obtained as -23.032
 
 From the second guess z_2= 40 the corresponding value of y is obtained as 78.96750000000009  at t= 5.
 
-The launch velocity is determined from the initial and final slope to be around 33 m/s.
+The launch velocity is determined from the two guessed slopes to be 33.33970588235293 m/s.
 '''
