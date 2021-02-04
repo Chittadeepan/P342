@@ -13,9 +13,10 @@ def matrix_read_and_write(file_a,data):
         fptr.write(data)
     #reading matrices from files
     with open(file_a) as fptr:
-        data=fptr.readlines()
-    A= [[eval(x) for x in line.split()] for line in data]        
-    return A
+        data=fptr.read()
+        print(data)
+    #A= [[eval(x) for x in line.split()] for line in data]        
+    #return A
 #display_matrix function
 def display_matrix(a):
     for i in range(len(a)):
@@ -424,12 +425,12 @@ def RK4(x,y,v,h,r,f_1,f_2):
 #shooting method
 def shooting_method(x_0,y_0,h,x_n,y_n,z_1,z_2,f_1,f_2):
     #calling RK4 function with initial values, estimated slopes and both the functions as parameters 
-    print('\nFor z_1=1.5 as estimated slope, the values of x and y are obtained as:')
+    print('\nFor z_1=',z_1,' as estimated slope, the values of x and y are obtained as:')
     x_1,y_1=RK4(x_0,y_0,z_1,h,x_n,f_1,f_2)
-    print("\nFrom the first guess z_1=",z_1, "the corresponding value of y is obtained as",y_1," at x=",x_n)
-    print('\nFor z_2=2.5 as estimated slope, the values of x and y are obtained as:')
+    print("\nFrom the first guess z_1=",z_1, "the corresponding value of y is obtained as",y_1," at t=",x_0)
+    print('\nFor z_2=',z_2,' as estimated slope, the values of x and y are obtained as:')
     x_2,y_2=RK4(x_0,y_0,z_2,h,x_n,f_1,f_2)
-    print("\nFrom the second guess z_2=",z_2, "the corresponding value of y is obtained as",y_2," at x=",x_n)
+    print("\nFrom the second guess z_2=",z_2, "the corresponding value of y is obtained as",y_2," at t=",x_n)
     #condition for y_1 and y_n to be close enough
     if abs(y_1-y_n)<0.000001:
         return y_1,z_1
@@ -446,7 +447,7 @@ def shooting_method(x_0,y_0,h,x_n,y_n,z_1,z_2,f_1,f_2):
                 u=z_2+(z_1-z_2)*(y_n-y_2)/(y_1-y_2)
                 y_1,y_2=y_2,y_1
             else:
-                print("\nGuess another slope at x_0.")
+                print("\nGuess another slope at  original position.")
                 return y_2,z_2
             #calling RK4 function with the same initial values, correct slope and both the functions as parameters
             x_3,y_3=RK4(x_0,y_0,u,h,x_n,f_1,f_2)
@@ -664,3 +665,136 @@ def monte_carlo_volume(g,h,i,p,q,r,f,N):
     #calculating the numerical integration result of f(x) equation
     result=(inside_counter/N)*V
     return result
+
+#least_square_fitting function
+def least_square_fitting(N,A):
+    #initialising variables to calculate average of x,y,x^2,xy and residuals
+    sum_x=0
+    sum_y=0
+    sum_x2=0
+    sum_y2=0
+    sum_xy=0
+    sum_error=0#R^2
+    #determination of slope and intercept
+    print("Total number of observations:",N)
+    for i in range (N):
+        x=A[i][0]
+        print('Time:',x)
+        y=A[i][1]
+        print('Angular velocity:',y)
+        '''
+        #xy=x*y
+        #print(xy)
+        
+        #print(x2)
+        '''
+        sum_x=sum_x+x
+        sum_x2=sum_x2+x**2
+        sum_xy=sum_xy+x*y
+        sum_y=sum_y+y
+        sum_y2=sum_y2+y**2
+        
+        print('\n')
+    mean_x=sum_x/N
+    
+    mean_y=sum_y/N
+    mean_xy=sum_xy/N
+    mean_x2=sum_x2/N
+
+    S_xx=sum_x2-N * mean_x ** 2
+    print("S_xx:",S_xx)
+    delta=N*S_xx
+    S_yy=sum_y2-N * mean_y ** 2
+    print("S_yy:",S_yy)
+    S_xy=sum_xy-N * mean_x * mean_y
+    print("S_xy:",S_xy)
+    sig_x =sqrt(abs(S_xx/N)) #standard deviation of x
+    sig_y =sqrt(abs(S_yy/N)) #standard deviation of y
+    sig_xy =sqrt(abs(S_xy/N)) #square root of co-variance of x,y
+
+    intercept_1=(mean_y*sum_x2-mean_x*sum_xy)/S_xx
+    slope=S_xy/S_xx
+    print('\nSlope:',slope)
+    intercept_2=mean_y-slope*mean_x
+    print('Intercept:',intercept_2,'\n')
+    #slope and intercept are regression coeff
+    
+    r=sqrt(S_xy**2/(S_xx*S_yy))#pearson's r correlation coeff quality of fit
+    print("Pearson's r:",r)
+    #R^2 calculation
+    for j in range(N):
+        x=A[j][0]
+        y=A[j][1]
+        error=y-slope*x-intercept_1
+        #print('square of error:',error**2) 
+        sum_error=sum_error + error**2
+    #print('R^2:',sum_error)
+
+    #standard error calculation
+    #standard=stanadard deviation/sqrt(N)
+    S=sqrt((S_yy-slope*S_xy)/(N-2))
+    SE_intercept=S*sqrt(1/N + mean_x**2/S_xx)#standard error in intercept
+    SE_slope=S/sqrt(S_xx)#standard error in slope
+
+    #print('Error in slope:',SE_slope)
+    #print('Error in intercept:',SE_intercept)
+    return slope,intercept_2,r
+#practice functions
+def standard_deviation_1(N,A):
+    sum_x=0
+    Sum=0
+    for i in range(N):
+        x=A[i]
+        sum_x=sum_x+x
+
+    mean_x=sum_x/N
+    for j in range(N):
+        x=A[j]
+        Sum=Sum + (x-mean_x)**2        
+    #calculating various sigma
+    sig_n_1=sqrt(Sum/N)#biased estimator of variance if actual mean given
+    sig_n_2=sqrt(Sum/(N-1))#unbiased estimator of variance to estimate mean
+    sig_n_3=sqrt((Sum-Sum/N)/(N-1))#2 pass algorithm strict standard deviation
+    return sig_n_1,mean_x
+
+def standard_deviation_2(N,A):
+    sum_data=0
+    sum_n=0
+    Sum=0
+    #calculating Sum of all values and total number of observations in loop
+    for i in range(N):
+        n=A[i][0]
+        mean=A[i][1]
+        sum_data=sum_data+n*mean
+        sum_n=sum_n+n
+        
+    mean_data=sum_data/sum_n
+    
+    for j in range (N):
+        sigma=A[i][2]
+        mean=A[i][1]
+        d=mean-mean_data
+        Sum=Sum+n*(sigma**2+d**2)
+    #calculating net standard deviation    
+    sigma_data=sqrt(Sum/sum_n)
+    return mean_data,sigma_data
+
+def standard_deviation_3(number,A):
+    Sum=0
+    Sum_N=0
+    Product_N=1
+    mean_x=A[0][1]
+    mean_y=A[1][1]
+    for i in range(number):
+        N=C[i][0]
+        mean_data=A[i][1]
+        sigma_data=A[i][2]
+        Sum=Sum+(N-1)**2*sigma_data**2
+        Sum_N=Sum_N+N
+        Product_N=Product_N*N
+        
+    #calculating overall standard deviation for both standard deviation along x and y directions
+    Grand_Sum=Sum_N+ (Product_N/Sum_N)*(mean_x-mean_y)**2
+    Grand_Sigma=Grand_Sum/(Sum_N-1)
+    return Grand_Sigma
+    #S_N=2/3(M_N)+1/3(T_N) S_n-Simpson M_N-midpoint T_N-trapezoidal
