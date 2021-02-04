@@ -8,22 +8,23 @@ def main():
     #calling matrix_read_and_write method for reading the dat file
     matrix_read_and_write("esem_table.dat","")
     
-    
-    #data points for two sets of equations
-    A=[[0,2.20],[0.30,1.96],[0.60,1.72],[0.90,1.53],[1.20,1.36],[1.50,1.22],[1.80,1.10],[2.10,1.00],[2.40,0.86],[2.70,0.75],[3.00,0.65],[3.30,0.60]]
-    B=[[0,log(2.20)],[0.30,log(1.96)],[0.60,log(1.72)],[0.90,log(1.53)],[1.20,log(1.36)],[1.50,log(1.22)],[1.80,log(1.10)],[2.10,log(1.00)],[2.40,log(0.86)],[2.70,log(0.75)],[3.00,log(0.65)],[3.30,log(0.60)]]  
-    
     #part(i) omega(t)=omega_0 + omega_c*t
+    #initialising a list with given data points
+    A=[[0,2.20],[0.30,1.96],[0.60,1.72],[0.90,1.53],[1.20,1.36],[1.50,1.22],[1.80,1.10],[2.10,1.00],[2.40,0.86],[2.70,0.75],[3.00,0.65],[3.30,0.60]]
+    
     
     #calling least_square_fitting_method to determine slope,intercept and quality of fit
     slope_1,intercept_1,r_1=least_square_fitting(N,A)
     print("\nFrom the obtained value of slope and intercept, the value of omega_0:",intercept_1," and the value of omega_c:",slope_1,"and the quality of fit",r_1**2,".")
 
     #part(ii) omega(t)=omega_0*e**(-omega_c*t). This implies ln(omega(t))=ln(omega_0)-omega_c*t
-
+    #converting angular velocity to natural logarithm of angular velocity in a loop
+    for i in range(N):
+        A[i][1]=log(A[i][1])
+        
     #calling least_square_fitting_method to determine slope,intercept and quality of fit
-    slope_2,intercept_2,r_2=least_square_fitting(N,B)
-    print("\nFrom the obtained value of slope and intercept, the value of omega_0:",e**intercept_2," and the value of omega_c:",-slope_2,"and the quality of fit",r_2**2,".")       
+    slope_2,intercept_2,r_2=least_square_fitting(N,A)
+    print("\nFrom the obtained value of slope and intercept, the value of omega_0:",e**intercept_2," and the value of omega_c:",-slope_2,"and the quality of fit",r_2**2,".\n")       
 main()
 '''
 #output
