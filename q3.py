@@ -6,8 +6,8 @@ def main():
     #initialising number of observations
     N=12
     #calling matrix_read_and_write method for reading the dat file
-    A=matrix_read_and_write("esem_table.dat","")
-    B=matrix_read_and_write("esem_table.dat","")
+    matrix_read_and_write("esem_table.dat","")
+    
     
     #data points for two sets of equations
     A=[[0,2.20],[0.30,1.96],[0.60,1.72],[0.90,1.53],[1.20,1.36],[1.50,1.22],[1.80,1.10],[2.10,1.00],[2.40,0.86],[2.70,0.75],[3.00,0.65],[3.30,0.60]]
@@ -17,16 +17,32 @@ def main():
     
     #calling least_square_fitting_method to determine slope,intercept and quality of fit
     slope_1,intercept_1,r_1=least_square_fitting(N,A)
-    print("\nFrom the obtained value of slope and intercept, the value of omega_0:",intercept_1," and the value of omega_c:",slope_1,"and the quality of fit",r_1,".")
+    print("\nFrom the obtained value of slope and intercept, the value of omega_0:",intercept_1," and the value of omega_c:",slope_1,"and the quality of fit",r_1**2,".")
 
     #part(ii) omega(t)=omega_0*e**(-omega_c*t). This implies ln(omega(t))=ln(omega_0)-omega_c*t
 
     #calling least_square_fitting_method to determine slope,intercept and quality of fit
     slope_2,intercept_2,r_2=least_square_fitting(N,B)
-    print("\nFrom the obtained value of slope and intercept, the value of omega_0:",e**intercept_2," and the value of omega_c:",-slope_2,"and the quality of fit",r_2,".")       
+    print("\nFrom the obtained value of slope and intercept, the value of omega_0:",e**intercept_2," and the value of omega_c:",-slope_2,"and the quality of fit",r_2**2,".")       
 main()
 '''
 #output
+#time   angular velocity
+#
+0.00    2.20
+0.30    1.96
+0.60    1.72
+0.90    1.53
+1.20    1.36
+1.50    1.22
+1.80    1.10
+2.10    1.00
+2.40    0.86
+2.70    0.75
+3.00    0.65
+3.30    0.60
+
+
 Total number of observations: 12
 Time: 0
 Angular velocity: 2.2
@@ -85,7 +101,7 @@ Intercept: 2.0291025641025646
 
 Pearson's r: 0.9851557666128388
 
-From the obtained value of slope and intercept, the value of omega_0: 2.0291025641025646  and the value of omega_c: -0.4747086247086251 and the quality of fit 0.9851557666128388 .
+From the obtained value of slope and intercept, the value of omega_0: 2.0291025641025646  and the value of omega_c: -0.4747086247086251 and the quality of fit 0.9705318844905301 .
 Total number of observations: 12
 Time: 0
 Angular velocity: 0.7884573603642703
@@ -144,5 +160,5 @@ Intercept: 0.7902775293458725
 
 Pearson's r: 0.9991179387307727
 
-From the obtained value of slope and intercept, the value of omega_0: 2.2040080182882558  and the value of omega_c: 0.3955961745485569 and the quality of fit 0.9991179387307727 .
+From the obtained value of slope and intercept, the value of omega_0: 2.2040080182882558  and the value of omega_c: 0.3955961745485569 and the quality of fit 0.9982366554936281 .
 '''

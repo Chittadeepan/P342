@@ -676,6 +676,7 @@ def least_square_fitting(N,A):
     sum_xy=0
     sum_error=0#R^2
     #determination of slope and intercept
+    #calculating sum_x, sum_y, sum_x2, sum_xy and sum_y2 in a loop
     print("Total number of observations:",N)
     for i in range (N):
         x=A[i][0]
@@ -701,6 +702,7 @@ def least_square_fitting(N,A):
     mean_xy=sum_xy/N
     mean_x2=sum_x2/N
 
+    #calculating S_xx,S_yy and S_xy
     S_xx=sum_x2-N * mean_x ** 2
     print("S_xx:",S_xx)
     delta=N*S_xx
@@ -719,7 +721,7 @@ def least_square_fitting(N,A):
     print('Intercept:',intercept_2,'\n')
     #slope and intercept are regression coeff
     
-    r=sqrt(S_xy**2/(S_xx*S_yy))#pearson's r correlation coeff quality of fit
+    r=sqrt(S_xy**2/(S_xx*S_yy))#pearson's r or correlation coeff 
     print("Pearson's r:",r)
     #R^2 calculation
     for j in range(N):
